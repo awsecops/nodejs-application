@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
-  const msg = 'Hello  this is Aws and Devsecops sessions\n'
+  const msg = 'Hello  this is Aws architect  and Devsecops sessions\n'
   res.end(msg);
 });
 
