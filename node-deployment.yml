@@ -1,21 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: astro-villa
+  labels:
+    app.kubernetes.io/name: cicd-demo
+    app.kubernetes.io/instance: cicd-demo-instance
+    app.kubernetes.io/version: '1.0.0'
+    app.kubernetes.io/managed-by: kubectl
+  name: cicd-demo-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: astro-villa
-      tier: frontend
+      app: cicd-demo
   template:
     metadata:
       labels:
-        app: astro-villa
-        tier: frontend
+        app: cicd-demo
     spec:
       containers:
-        - name: astro-villa
-          image: learnitguide/knotejs:1.0
+        - image: 188691447767.dkr.ecr.ap-south-1.amazonaws.com/nodeapp:latest
+          imagePullPolicy: Always
+          name: cicd-demo
           ports:
             - containerPort: 3000
