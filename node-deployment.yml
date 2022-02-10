@@ -1,37 +1,46 @@
+  -------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  metadata:
   labels:
-    app.kubernetes.io/name: cicd-demo
-    app.kubernetes.io/instance: cicd-demo-instance
+    app.kubernetes.io/name: nodejs-app
+    app.kubernetes.io/instance: nodejs-app
     app.kubernetes.io/version: '1.0.0'
     app.kubernetes.io/managed-by: kubectl
-  name: cicd-demo-deployment
+  name: deployment-rolling-update
+  namespace: default
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
-      app: cicd-demo
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: cicd-demo
+        app: nodejs-app
+        role: rolling-update
     spec:
       containers:
-        - image: 297334065546.dkr.ecr.ap-south-1.amazonaws.com/nodeapp
-          imagePullPolicy: Always
-          name: cicd-demo
-          ports:
-            - containerPort: 3000
-            readinessProbe:
-              httpGet:
-               path: /
-               port: 80
-              initialDelaySeconds: 5
-              periodSeconds: 5
-              successThreshold: 1
- strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxSurge: 50%
-    maxUnavailable: 50%            
+      - image: 297334065546.dkr.ecr.ap-south-1.amazonaws.com/nodeapp
+        imagePullPolicy: Always
+        name: nodejs-app
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+          
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+   
+    
+    
+    
