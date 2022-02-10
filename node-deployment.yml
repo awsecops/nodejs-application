@@ -23,3 +23,15 @@ spec:
           name: cicd-demo
           ports:
             - containerPort: 3000
+            readinessProbe:
+              httpGet:
+               path: /
+               port: 80
+              initialDelaySeconds: 5
+              periodSeconds: 5
+              successThreshold: 1
+ strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 50%
+    maxUnavailable: 50%            
