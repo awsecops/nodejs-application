@@ -1,4 +1,3 @@
-  -------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,8 +7,7 @@ metadata:
     app.kubernetes.io/instance: nodejs-app
     app.kubernetes.io/version: '1.0.0'
     app.kubernetes.io/managed-by: kubectl
-  name: deployment-rolling-update
-  namespace: default
+  name: nodejs-app-rolling-update
 spec:
   replicas: 4
   selector:
@@ -22,7 +20,7 @@ spec:
         role: rolling-update
     spec:
       containers:
-      - image: 297334065546.dkr.ecr.ap-south-1.amazonaws.com/nodeapp
+      - image: 297334065546.dkr.ecr.ap-south-1.amazonaws.com/nodeapp:latest
         imagePullPolicy: Always
         name: nodejs-app
         ports:
@@ -34,13 +32,9 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
-          
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 50%
       maxUnavailable: 50%
-   
-    
-    
-    
