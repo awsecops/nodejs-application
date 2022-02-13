@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   metadata:
   labels:
-    app.kubernetes.io/name: nodejs-app
-    app.kubernetes.io/instance: nodejs-app
+    app.kubernetes.io/name: nodejs-app-rolling-update
+    app.kubernetes.io/instance: nodejs-app-rolling-update
     app.kubernetes.io/version: '1.0.0'
     app.kubernetes.io/managed-by: kubectl
   name: nodejs-app-rolling-update
@@ -16,11 +16,11 @@ spec:
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: nodejs-app-rolling-update
         role: rolling-update
     spec:
       containers:
-      - image: 297334065546.dkr.ecr.ap-south-1.amazonaws.com/nodeapp:latest
+      - image: 084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest
         imagePullPolicy: Always
         name: nodejs-app
         ports:
