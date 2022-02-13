@@ -33,7 +33,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t code-build-nodeapp . .
+      - docker build -t code-build-nodeapp . 
       - docker tag code-build-nodeapp:latest 084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest
 
   post_build:
