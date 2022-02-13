@@ -12,7 +12,7 @@ spec:
   replicas: 4
   selector:
     matchLabels:
-      app: nodejs-app
+      app: nodejs-app-rolling-update
   template:
     metadata:
       labels:
@@ -22,7 +22,7 @@ spec:
       containers:
       - image: 084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest
         imagePullPolicy: Always
-        name: nodejs-app
+        name: nodejs-app-rolling-update
         ports:
         - containerPort: 3000
         readinessProbe:
