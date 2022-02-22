@@ -17,7 +17,7 @@ phases:
        commands:
          - echo pushing to ECR
          - docker push 084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest
-         - printf '[{"name":"ECS-NEWAPP","imageUri":"084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest"}]' > imagedefinitions.json
+         - printf '[{"name":"nodejs","imageUri":"084138576643.dkr.ecr.ap-south-1.amazonaws.com/code-build-nodeapp:latest"}]' > imagedefinitions.json
              
 artifacts:
   files:
